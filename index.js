@@ -9,27 +9,23 @@ module.exports = function(html, type) {
     var src = '';
 
     // extract script
-    var scriptText = '';
+    var scriptTexts = [];
     html = html.replace(REG_SCRIPT_TAG, function(a, b) {
-        scriptText += '\n' + b.trim();
+        scriptTexts.push(b.trim());
         return '';
     });
 
-    if (scriptText) {
+    if (scriptTexts) {
         // strip indent
-        src += scriptText.replace(/\n    /g, '\n');
+        src += scriptTexts.join('\n');
     }
 
     // extract style
-    // var cssText = '';
-    // html = html.replace(REG_STYLE_TAG, function(a, b) {
-    //     cssText += '\n' + b.trim();
-    //     return '';
-    // });
-
-    // if (cssText) {
-    //     src += '\nexports.style = ' + JSON.stringify(cssText);
-    // }
+    var cssTexts = [];
+    html = html.replace(REG_STYLE_TAG, function(a, b) {
+        cssTexts.push(b.trim());
+        return '';
+    });
 
     // extract html
     html = html.trim().replace(/(>)\s+(<)/g, '$1$2');
@@ -38,6 +34,10 @@ module.exports = function(html, type) {
 
     if (html) {
         src += 'module.exports.push({__view:' + JSON.stringify('<!-- ' + type + ' Begin -->' + html + '<!-- ' + type + ' End -->') + '});';
+    }
+
+    if (cssTexts.length) {
+        src += 'module.exports.push({__style:' + JSON.stringify('\n/* ' + type + ' */\n'  + cssTexts.join('\n')) + '})';
     }
 
     return src;
