@@ -1,0 +1,19 @@
+{
+  "name": "crystal-modulify",
+  "version": "0.0.1",
+  "description": "crystal-modulify ============",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/youngjay/crystal-modulify.git"
+  },
+  "author": "",
+  "license": "mit",
+  "bugs": {
+    "url": "https://github.com/youngjay/crystal-modulify/issues"
+  },
+  "homepage": "https://github.com/youngjay/crystal-modulify"
+}
