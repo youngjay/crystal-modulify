@@ -1,4 +1,4 @@
-componentify
+crystal-modulify
 ============
 
 transform html to a js object
