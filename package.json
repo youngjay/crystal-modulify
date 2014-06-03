@@ -1,6 +1,6 @@
 {
   "name": "crystal-modulify",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "crystal-modulify ============",
   "main": "index.js",
   "scripts": {

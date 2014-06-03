@@ -30,14 +30,12 @@ module.exports = function(html, type) {
     // extract html
     html = html.trim().replace(/(>)\s+(<)/g, '$1$2');
 
-    src += ';if (!Array.isArray(module.exports)) { module.exports = [module.exports] }';
-
     if (html) {
-        src += 'module.exports.push({__view:' + JSON.stringify('<!-- ' + type + ' Begin -->' + html + '<!-- ' + type + ' End -->') + '});';
+        src = 'var __html=' + JSON.stringify(html) + ';\n' + src;
     }
 
     if (cssTexts.length) {
-        src += 'module.exports.push({__style:' + JSON.stringify('\n/* ' + type + ' */\n'  + cssTexts.join('\n')) + '})';
+        src = 'var __css=' + JSON.stringify(cssTexts.join('\n')) + ';\n' + src;
     }
 
     return src;
