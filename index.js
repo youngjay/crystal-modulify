@@ -5,7 +5,11 @@ var buildTagReg = function(tag) {
 var REG_SCRIPT_TAG = buildTagReg('script');
 var REG_STYLE_TAG = buildTagReg('style');
 
-module.exports = function(html, type) {
+module.exports = function(html, options) {
+    if (!options) {
+        options = {};
+    }
+
     var src = '';
 
     // extract script
@@ -28,15 +32,14 @@ module.exports = function(html, type) {
     });
 
     // extract html
-    html = html.trim().replace(/(>)\s+(<)/g, '$1$2');
+    html = html.trim();
 
-    if (html) {
-        src = 'var __html=' + JSON.stringify(html) + ';\n' + src;
-    }
+    if (options.stripWhitespace) {
+        html = html.replace(/(>)\s+(<)/g, '$1$2');
+    }    
 
-    if (cssTexts.length) {
-        src = 'var __css=' + JSON.stringify(cssTexts.join('\n')) + ';\n' + src;
-    }
+    src = 'var __html=' + JSON.stringify(html) + ';\n' + src;
+    src = 'var __css=' + JSON.stringify(cssTexts.join('\n')) + ';\n' + src;
 
     return src;
 }
