@@ -6,9 +6,7 @@ transform html to a js object
 ``` html
 <div data-bind="text: text"></div>
 <script>
-    module.exports = {
-        text: ''
-    }
+    var a = 1
 </script>
 ```
 
@@ -17,4 +15,5 @@ transform html to a js object
 ```javascript
 var __css="";
 var __html="<div data-bind="text: text"></div>";
+var a = 1;
 ```
