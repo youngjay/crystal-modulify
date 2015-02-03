@@ -1,5 +1,5 @@
-crystal-modulify
-============
+# crystal-modulify
+
 
 transform html to a js object
 
@@ -12,11 +12,9 @@ transform html to a js object
 </script>
 ```
 
-become
+变成
 
 ```javascript
-module.exports = {
-    text: ''
-};if (!Array.isArray(module.exports)) { module.exports = [module.exports] }module.exports.push({__view:"<!-- component/control/text.html Begin --><div data-bind=\"text: text\"></div><!-- component/control/text.html End -->"});
-
+var __css="";
+var __html="<div data-bind="text: text"></div>";
 ```
